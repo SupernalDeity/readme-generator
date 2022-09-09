@@ -1,5 +1,6 @@
 const fs = require('fs');
 const inquirer = require('inquirer');
+const { listenerCount } = require('process');
 
 const prompt = inquirer.createPromptModule();
 
@@ -35,14 +36,41 @@ prompt([
     {
         message: "What is your email?",
         name: 'email'
+    },
+    {
+        type: 'list',
+        message: 'What type of license would you like?',
+        choices: ['APM', 'AUR license', 'CPAN'],
+        name: 'license'
+    },
+    {
+        message: 'What color would you like for your lisence?',
+        name: 'color'
     }
-]).then((answers) => {
+])
+
+.then((answers) => {
     console.log(answers);
+
+    let licenseLink = '';
+    switch (answers.license) {
+        case 'APM':
+            licenseLink = `https://img.shields.io/badge/${answers.github}-MIT-${answers.color}`
+            break;
+        case 'AUR license':
+            licenseLink = `https://img.shields.io/badge/${answers.github}-Apache-${answers.color}`
+            break;
+        case 'CPAN':
+            licenseLink = `https://img.shields.io/badge/${answers.github}-lgpl__2__1-${answers.color}`
+            break;
+    };
+
     const template =
 `# ${answers.title}
 
 ## License 
-    
+![license](${licenseLink})
+
 ## Table of Content
 * [Description](#description)
 * [Instructions](#instructions)
