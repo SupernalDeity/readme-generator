@@ -15,7 +15,7 @@ Program that takes in user input to generate a README file.
 Install requirer@8.2.4 npm and run the index.js file with node.
 
 ## Visuals
-![Example README file generated()
+![Example README file generated](./Develop/generated%20readme.JPG)
 
 ## Links
 GitHub: https://github.com/SupernalDeity/readme-generator
