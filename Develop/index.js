@@ -1,7 +1,49 @@
-// TODO: Include packages needed for this application
+const fs = require('fs');
+const inquirer = require('inquirer');
 
-// TODO: Create an array of questions for user input
-const questions = [];
+prompt([ 
+    {
+        message: 'Enter the title for your project.',
+        name: 'title'
+    },
+    {
+        message: 'Enter the desription of your project.',
+        name: 'description'
+    },
+    {
+        message: 'Enter the installation guide for your project.',
+        name: 'installation'
+    },
+    {
+        message: 'Enter the usage of your project.',
+        name: 'usage'
+    },
+    {
+        message: "Enter a contributing guideline.",
+        name: 'contributing'
+    },
+    {
+        message: 'Enter your project\'s tests.',
+        name: 'tests'
+    },
+    {
+        message: 'What is your GitHub username?',
+        name: 'github'
+    },
+    {
+        message: "What is your email?",
+        name: 'email'
+    }
+]);
+
+
+
+
+
+
+
+
+
 
 // TODO: Create a function to write README file
 function writeToFile(fileName, data) {}
