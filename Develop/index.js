@@ -22,7 +22,7 @@ prompt([
         name: 'usage'
     },
     {
-        message: "Enter  contributing guideline for your project.",
+        message: "Enter contributing guidelines for your project.",
         name: 'contributing'
     },
     {
@@ -55,13 +55,13 @@ prompt([
     let licenseLink = '';
     switch (answers.license) {
         case 'APM':
-            licenseLink = `https://img.shields.io/badge/${answers.github}-MIT-${answers.color}`
+            licenseLink = `https://img.shields.io/badge/${answers.github}-MIT-${answers.color.toLowerCase()}`
             break;
         case 'AUR license':
-            licenseLink = `https://img.shields.io/badge/${answers.github}-Apache-${answers.color}`
+            licenseLink = `https://img.shields.io/badge/${answers.github}-Apache-${answers.color.toLowerCase()}`
             break;
         case 'CPAN':
-            licenseLink = `https://img.shields.io/badge/${answers.github}-lgpl__2__1-${answers.color}`
+            licenseLink = `https://img.shields.io/badge/${answers.github}-lgpl__2__1-${answers.color.toLowerCase()}`
             break;
     };
 
@@ -97,7 +97,7 @@ ${answers.tests}
 
 ## Questions
 https://github.com/${answers.github} 
-${answers.email} 
+https://${answers.email} 
 `;
 
     if (!fs.existsSync('./output')) {
