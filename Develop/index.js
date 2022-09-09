@@ -1,9 +1,11 @@
 const fs = require('fs');
 const inquirer = require('inquirer');
 
+const prompt = inquirer.createPromptModule();
+
 prompt([ 
     {
-        message: 'Enter the title for your project.',
+        message: 'Enter the title of your project.',
         name: 'title'
     },
     {
@@ -19,7 +21,7 @@ prompt([
         name: 'usage'
     },
     {
-        message: "Enter a contributing guideline.",
+        message: "Enter  contributing guideline for your project.",
         name: 'contributing'
     },
     {
@@ -34,22 +36,44 @@ prompt([
         message: "What is your email?",
         name: 'email'
     }
-]);
+]).then((answers) => {
+    console.log(answers);
+    const template =
+`# ${answers.title}
 
+## License 
+    
+## Table of Content
+* [Description](#description)
+* [Instructions](#instructions)
+* [Visuals](#visuals)
+* [Usage](#usage)
+* [Contributing](#contributing)
+* [Tests](#tests)
+* [Questions](#questions)
+    
+## Description
+${answers.description}
 
+## Instructions
+${answers.installation}
 
+## Usage 
+${answers.usage}
 
+## Contributing
+${answers.contributing}
 
+## Tests 
+${answers.tests}
 
+## Questions
+https://github.com/${answers.github} 
+${answers.email} 
+`;
 
-
-
-
-// TODO: Create a function to write README file
-function writeToFile(fileName, data) {}
-
-// TODO: Create a function to initialize app
-function init() {}
-
-// Function call to initialize app
-init();
+    if (!fs.existsSync('./output')) {
+        fs.mkdirSync('./output');
+    }
+    fs.writeFileSync('./output/generated.md', template);
+});
